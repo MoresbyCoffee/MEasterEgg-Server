@@ -1,8 +1,8 @@
 /*
  * Moresby Coffee Bean
  *
- * Copyright (c) ${year}, Barnabas Sudy (barnabas.sudy@gmail.com)
- * Copyright (c) ${year}, Balazs Balazs (balazs.balazs80@gmail.com)
+ * Copyright (c) 2013, Barnabas Sudy (barnabas.sudy@gmail.com)
+ * Copyright (c) 2013, Balazs Balazs (balazs.balazs80@gmail.com)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,29 +27,30 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.moresbycoffee.measteregg.server.controller;
+package org.moresbycoffee.measteregg.server;
+
+import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import org.moresbycoffee.measteregg.server.controller.EggDTO;
+import org.moresbycoffee.measteregg.server.controller.IMEasterEggController;
 
 /**
- * Describes the REST web interface. 
+ * TODO javadoc.
  * 
- * @author bsudy
- *
+ * @author envagyok
  */
+@Slf4j
 @Controller
-public interface IMEasterEggController {
+public class MEasterEggController implements IMEasterEggController {
 
-	/** URL mapping to return the positions of the eggs in the vicinity. */
-	public static final String URL_MAPPING_GET_EGGS = "/eggs";
+	/** {@inheritDoc} */
+	@Override
+	public EggDTO getEggs(@RequestParam("lat") final Double latitude, @RequestParam("lon") final Double longitude, final String userId) {
+		log.info("INVOKED!!!! YUPPPIEEEEE!!!!!" + latitude + " " + longitude + " " + userId);
+		return new EggDTO(1.1d, 1.2d, false);
+	}
 
-	@RequestMapping(value = URL_MAPPING_GET_EGGS, method = RequestMethod.POST)
-	@ResponseBody EggDTO getEggs(@RequestParam("lat") final Double latitude, @RequestParam("lon") final Double longitude, @RequestParam final String userId);
-	
-	
 }
