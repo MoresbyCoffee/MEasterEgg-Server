@@ -1,8 +1,8 @@
 /*
  * Moresby Coffee Bean
  *
- * Copyright (c) ${year}, Barnabas Sudy (barnabas.sudy@gmail.com)
- * Copyright (c) ${year}, Balazs Balazs (balazs.balazs80@gmail.com)
+ * Copyright (c) 2013, Barnabas Sudy (barnabas.sudy@gmail.com)
+ * Copyright (c) 2013, Balazs Balazs (balazs.balazs80@gmail.com)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,28 +29,23 @@
  */
 package org.moresbycoffee.measteregg.server.controller;
 
-import java.util.List;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import lombok.Data;
 
 /**
- * Describes the REST web interface. 
+ * REST API Entity containing the information about an Egg.
  * 
  * @author bsudy
- *
  */
-@Controller
-public interface IMEasterEggController {
+@Data
+public class EggDTO {
 
-	/** URL mapping to return the positions of the eggs in the vicinity. */
-	public static final String URL_MAPPING_GET_EGGS = "/eggs";
-
-	@RequestMapping(value = URL_MAPPING_GET_EGGS, method = RequestMethod.POST)
-	List<EggDTO> getEggs(@RequestParam final double latitute, @RequestParam final double longitude, @RequestParam final String userId);
+	/** The latitude of the position of the Egg. */
+	private final Double latitude;
 	
+	/** The longitude of the position of the Egg. */
+	private final Double longitude;
+	
+	/** <tt>true</tt> if the Egg has already been found by the user, otherwise <tt>false</tt> */
+	private final Boolean found;
 	
 }
