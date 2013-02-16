@@ -57,6 +57,10 @@ public class User {
 	@GeneratedValue
 	private Long id;
 	
+	/** Unique user identifier */
+	// TODO add unique constraint
+	private String userId;
+	
 	@OneToMany(mappedBy = "user")
 	private List<Discovery> discoveredEggs = new ArrayList<Discovery>();
 
